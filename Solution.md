@@ -527,7 +527,7 @@ function solution(str1, str2) {
 }
 
 function solution(str1, str2) {
-    return str1.split(str2).length > 1 ? 1 : 2
+    return str1.split(str2).length > 1 ? 1 : 2;
 }
 ```
 
@@ -545,7 +545,7 @@ def solution(num_list):
             짝수 += 1
         else:
             홀수 += 1
-    
+
     return [짝수, 홀수]
 
 def solution(num_list):
@@ -565,18 +565,18 @@ def solution(num_list):
 function solution(num_list) {
     var answer = [0, 0];
 
-    for (let a of num_list){
-        answer[a % 2] += 1
+    for (let a of num_list) {
+        answer[a % 2] += 1;
     }
 
     return answer;
 }
 
 function solution(num_list) {
-  return [
-    num_list.filter((num) => num % 2 === 0).length,
-    num_list.filter((num) => num % 2 === 1).length,
-  ];
+    return [
+        num_list.filter((num) => num % 2 === 0).length,
+        num_list.filter((num) => num % 2 === 1).length,
+    ];
 }
 ```
 
@@ -594,7 +594,7 @@ def solution(num_list):
 
 ```js
 function solution(num_list) {
-    return num_list.reverse()
+    return num_list.reverse();
 }
 ```
 
@@ -612,7 +612,7 @@ def solution(array):
 
 ```js
 function solution(array) {
-    return [Math.max(...array), array.indexOf(Math.max(...array))]
+    return [Math.max(...array), array.indexOf(Math.max(...array))];
 }
 ```
 
@@ -658,7 +658,7 @@ def solution(numbers):
 ```js
 function solution(numbers) {
     numbers.sort((a, b) => b - a);
-    return numbers[0]*numbers[1];
+    return numbers[0] * numbers[1];
 }
 ```
 
@@ -685,7 +685,10 @@ def solution(n):
 
 ```js
 function solution(n) {
-    return Array(n).fill(0).map((v, i) => v + i + 1).filter((v) => n % v === 0);
+    return Array(n)
+        .fill(0)
+        .map((v, i) => v + i + 1)
+        .filter((v) => n % v === 0);
 }
 ```
 
@@ -712,7 +715,7 @@ def solution(numbers):
 
 ```js
 function solution(numbers) {
-    return numbers.map(i => i * 2);
+    return numbers.map((i) => i * 2);
 }
 ```
 
@@ -734,26 +737,26 @@ function solution(numbers, num1, num2) {
 }
 
 ///////
-v = [10, 20, 30, 40, 50, 60, 70]
+v = [10, 20, 30, 40, 50, 60, 70];
 v.splice(2, 3);
 // [30, 40, 50]
-v
+v;
 // [10, 20, 60, 70]
-v = [10, 20, 30, 40, 50, 60, 70]
+v = [10, 20, 30, 40, 50, 60, 70];
 v.splice(2, 3, 1000);
 // [30, 40, 50]
-v
+v;
 // [10, 20, 1000, 60, 70]
 
-v = [10, 20, 30, 40, 50, 60, 70]
+v = [10, 20, 30, 40, 50, 60, 70];
 v.splice(2, 3, [1, 2, 3]);
 // (3) [30, 40, 50]
-v
+v;
 // (5) [10, 20, Array(3), 60, 70]
-v = [10, 20, 30, 40, 50, 60, 70]
+v = [10, 20, 30, 40, 50, 60, 70];
 v.splice(2, 3, 1, 2, 3);
 // (3) [30, 40, 50]
-v
+v;
 // (7) [10, 20, 1, 2, 3, 60, 70]
 ///////
 
@@ -788,7 +791,7 @@ def solution(n, numlist):
 
 ```js
 function solution(n, numlist) {
-    return numlist.filter(v => v % n === 0);
+    return numlist.filter((v) => v % n === 0);
 }
 ```
 
@@ -802,7 +805,7 @@ def solution(n):
     return 1 if int(n ** 0.5) ** 2 == n else 2
 
 def solution(n):
-    return 1 if n ** 0.5 == int else 2 
+    return 1 if n ** 0.5 == int else 2
 
 def solution(n):
     return 1 if (n ** 0.5).is_integer() else 2
@@ -812,11 +815,11 @@ def solution(n):
 
 ```js
 function solution(n) {
-    return Math.sqrt(n) === Math.floor(Math.sqrt(n)) ? 1 : 2
+    return Math.sqrt(n) === Math.floor(Math.sqrt(n)) ? 1 : 2;
 }
 
 function solution(n) {
-  return Number.isInteger(Math.sqrt(n)) ? 1 : 2;
+    return Number.isInteger(Math.sqrt(n)) ? 1 : 2;
 }
 ```
 
@@ -835,118 +838,260 @@ def solution(n):
 ```js
 function solution(n) {
     var answer = [];
-    for (let i = 1; i<=n; i+=2) answer.push(i)
+    for (let i = 1; i <= n; i += 2) answer.push(i);
     return answer;
 }
 
 function solution(n) {
-    return Array(n).fill(1).map((v, i)=>v + i).filter(v => v % 2 === 1);
+    return Array(n)
+        .fill(1)
+        .map((v, i) => v + i)
+        .filter((v) => v % 2 === 1);
 }
 ```
 
-##
+## 삼각형의 완성조건 (1)
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120889
 -   python
 
 ```py
-
+def solution(sides):
+    sides.sort(reverse=True)
+    return 1 if sides[0] < sides[1] + sides[2] else 2
 ```
 
 -   js
 
 ```js
+// reduce
+// 누산기 (acc)
+// 현재 값 (cur)
+// 현재 인덱스 (idx)
+// 원본 배열 (src)
+function solution(sides) {
+    var answer = 0;
+    const max = Math.max(...sides);
+    const sum = sides.reduce((a, c) => a + c, 0) - max;
 
+    answer = max < sum ? 1 : 2;
+
+    return answer;
+}
 ```
 
-##
+## 옷가게 할인 받기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120818
 -   python
 
 ```py
-
+def solution(price):
+    if price >= 500000:
+        price *= 0.8
+    elif price >= 300000:
+        price *= 0.9
+    elif price >= 100000:
+        price *= 0.95
+    return int(price)
 ```
 
 -   js
 
 ```js
+function solution(price) {
+    if (price >= 500000) return parseInt(price * 0.8);
 
+    if (price >= 300000) return parseInt(price * 0.9);
+
+    if (price >= 100000) return parseInt(price * 0.95);
+
+    return price;
+}
 ```
 
-##
+## 점의 위치 구하기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120841
 -   python
 
 ```py
-
+def solution(dot):
+    x, y = dot
+    if x >= 0 and y >= 0:
+        return 1
+    elif x < 0 and y >= 0:
+        return 2
+    elif x < 0 and y < 0:
+        return 3
+    elif x >= 0 and y < 0:
+        return 4
+    return answer
 ```
 
 -   js
 
 ```js
-
+function solution(dot) {
+    // const [x, y] = dot;
+    var answer = 0;
+    if (dot[0] >= 0 && dot[1] >= 0) answer = 1;
+    if (dot[0] < 0 && dot[1] >= 0) answer = 2;
+    if (dot[0] < 0 && dot[1] < 0) answer = 3;
+    if (dot[0] >= 0 && dot[1] < 0) answer = 4;
+    return answer;
+}
 ```
 
-##
+## 순서쌍의 개수
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120836
 -   python
 
 ```py
+# 시간초과
+def solution(n):
+    answer = []
+    for i in range(1, n+1):
+        for j in range(1, n+1):
+            if i * j == n:
+                answer.append([i, j])
+    return len(answer)
 
+
+def solution(n):
+    answer = 0
+    for i in range(n):
+        if n % (i+1) == 0: # 나누어 떨어지면 매칭되는 값이 있다는 얘기임
+            answer += 1
+    return answer
 ```
 
 -   js
 
 ```js
+function solution(n) {
+    var answer = 0;
+    for (let i = 0; i <= n; i++) {
+        if (n % i === 0) {
+            answer += 1;
+        }
+    }
+    return answer;
+}
 
+function solution(n) {
+    let answer = 0;
+    for (let i = 1; i <= n; i++) {
+        if (!(n % i)) answer++;
+    }
+    return answer;
+}
 ```
 
-##
+## 모음 제거
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120849
 -   python
 
 ```py
+def solution(my_string):
+    return my_string.replace('a', '').replace('e', '').replace('i', '').replace('o', '').replace('u', '')
 
+def solution(my_string):
+    answer = ''
+
+    for c in my_string:
+        if c in ['a', 'e', 'i', 'o', 'u']:
+            continue
+        answer += c
+
+    return answer
+
+import re
+
+def solution(my_string):
+    return re.sub(r"[aeiou]", "", my_string)
 ```
 
 -   js
 
 ```js
+function solution(my_string) {
+    return my_string.replace(/[aeiou]/g, "");
+}
 
+function solution(my_string) {
+    return Array.from(my_string)
+        .filter((t) => !["a", "e", "i", "o", "u"].includes(t))
+        .join("");
+}
 ```
 
-##
+## 배열의 유사도
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120903
 -   python
 
 ```py
+def solution(s1, s2):
+    answer = 0
+    for i in s1:
+        if i in s2:
+            answer += 1
+    return answer
 
+def solution(s1, s2):
+    return len(set(s1) & set(s2))
+
+# 특이한 풀이
+def solution(s1, s2):
+    dic = {i:1 for i in s1}
+    answer = sum(dic.get(j,0)for j in s2)
+    return answer
 ```
 
 -   js
 
 ```js
+function solution(s1, s2) {
+    const i = s1.filter((x) => s2.includes(x));
+    return i.length;
+}
 
+function solution(s1, s2) {
+    let count = 0;
+    for (let v of s1) if (s2.includes(v)) count++;
+    return count;
+}
 ```
 
-##
+## 특정 문자 제거하기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120826
 -   python
 
 ```py
+def solution(my_string, letter):
+    return my_string.replace(letter, '')
 
+import re
+
+solution = lambda s, l : re.sub(l, "" , s)
 ```
 
 -   js
 
 ```js
+function solution(my_string, letter) {
+    const answer = my_string.split(letter).join("");
+    return answer;
+}
 
+function solution(my_string, letter) {
+    let reg = new RegExp(letter, "g");
+    return my_string.replace(reg, "");
+}
 ```
 
 ##
