@@ -1094,39 +1094,61 @@ function solution(my_string, letter) {
 }
 ```
 
-##
+## 문자 반복 출력하기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120825
 -   python
 
 ```py
+def solution(my_string, n):
+    return ''.join(i*n for i in my_string)
 
+def solution(my_string, n):
+    answer = ''
+    for i in my_string:
+        answer += (i * n)
+    return answer
 ```
 
 -   js
 
 ```js
-
+function solution(my_string, n) {
+    var answer = [...my_string].map((v) => v.repeat(n)).join("");
+    console.log(answer);
+    return answer;
+}
 ```
 
-##
+## 세균 증식
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120910
 -   python
 
 ```py
+def solution(n, t):
+    return n << t
 
+def solution(n, t):
+    return n*(2**(t))
 ```
 
 -   js
 
 ```js
+function solution(n, t) {
+    return n * 2 ** t;
+}
 
+function solution(n, t) {
+    while (t-- > 0) n *= 2;
+    return n;
+}
 ```
 
-##
+## 숨어있는 숫자의 덧셈 (1)
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120851
 -   python
 
 ```py
