@@ -1172,11 +1172,17 @@ def solution(my_string):
 
 ```js
 function solution(my_string) {
-    return my_string.replaceAll(/[^\d]/g, '').split('').map(v=>+v).reduce((a,v)=>a+v,0);
+    return my_string
+        .replaceAll(/[^\d]/g, "")
+        .split("")
+        .map((v) => +v)
+        .reduce((a, v) => a + v, 0);
 }
 
 function solution(my_string) {
-    return my_string.match(/[0-9]/g).reduce((a,b) => parseInt(a)+parseInt(b));
+    return my_string
+        .match(/[0-9]/g)
+        .reduce((a, b) => parseInt(a) + parseInt(b));
 }
 ```
 
@@ -1189,12 +1195,12 @@ function solution(my_string) {
 def solution(hp):
     answer = hp // 5
     hp = hp % 5
-    answer += hp // 3 
+    answer += hp // 3
     hp = hp % 3
-    answer += hp // 1 
+    answer += hp // 1
     return answer
 
-def solution(hp):    
+def solution(hp):
     return hp // 5 + (hp % 5 // 3) + ((hp % 5) % 3)
 ```
 
@@ -1202,7 +1208,7 @@ def solution(hp):
 
 ```js
 function solution(hp) {
-    return Math.floor(hp/5)+Math.floor((hp%5)/3)+(hp%5)%3;
+    return Math.floor(hp / 5) + Math.floor((hp % 5) / 3) + ((hp % 5) % 3);
 }
 ```
 
@@ -1220,11 +1226,18 @@ def solution(my_string):
 
 ```js
 function solution(my_string) {
-    return my_string.match(/\d/g).sort((a, b) => a - b).map(n => Number(n));
+    return my_string
+        .match(/\d/g)
+        .sort((a, b) => a - b)
+        .map((n) => Number(n));
 }
 
 function solution(my_string) {
-    return my_string.split("").filter((v) => !isNaN(v)).map((v) => v*1).sort((a,b) => a-b)
+    return my_string
+        .split("")
+        .filter((v) => !isNaN(v))
+        .map((v) => v * 1)
+        .sort((a, b) => a - b);
 }
 ```
 
@@ -1243,7 +1256,7 @@ def solution(array):
 
 ```js
 function solution(array) {
-  return array.sort((a, b) => a - b)[Math.floor(array.length / 2)];
+    return array.sort((a, b) => a - b)[Math.floor(array.length / 2)];
 }
 ```
 
@@ -1262,34 +1275,34 @@ for i in range(n):
 
 ```js
 // 기본 소스코드
-const readline = require('readline');
+const readline = require("readline");
 const rl = readline.createInterface({
     input: process.stdin,
-    output: process.stdout
+    output: process.stdout,
 });
 
 let input = [];
 
-rl.on('line', function (line) {
-    input = line.split(' ');
-}).on('close', function () {
+rl.on("line", function (line) {
+    input = line.split(" ");
+}).on("close", function () {
     console.log(Number(input[0]));
 });
 
 // 풀이
-const readline = require('readline');
+const readline = require("readline");
 const rl = readline.createInterface({
     input: process.stdin,
-    output: process.stdout
+    output: process.stdout,
 });
 
 let input = [];
 
-rl.on('line', function (line) {
-    input = line.split(' ');
-}).on('close', function () {
+rl.on("line", function (line) {
+    input = line.split(" ");
+}).on("close", function () {
     for (let i = 1; i <= +input[0]; i++) {
-        console.log('*'.repeat(i));
+        console.log("*".repeat(i));
     }
 });
 ```
@@ -1314,13 +1327,14 @@ def solution(my_string):
 
 ```js
 function solution(my_string) {
-    var answer = '';
-    for (let c of my_string) answer += c === c.toLowerCase() ? c.toUpperCase() : c.toLowerCase();
+    var answer = "";
+    for (let c of my_string)
+        answer += c === c.toLowerCase() ? c.toUpperCase() : c.toLowerCase();
     return answer;
 }
 ```
 
-## 
+##
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120839
 -   python
@@ -1358,9 +1372,9 @@ function solution(rsp) {
     let arr = {
         2: 0,
         0: 5,
-        5: 2
+        5: 2,
     };
-    var answer = [...rsp].map(v => arr[v]).join("");
+    var answer = [...rsp].map((v) => arr[v]).join("");
     return answer;
 }
 ```
@@ -1379,7 +1393,7 @@ def solution(my_string):
 
 ```js
 function solution(my_string) {
-    return my_string.toLowerCase().split('').sort().join('');
+    return my_string.toLowerCase().split("").sort().join("");
 }
 ```
 
@@ -1395,7 +1409,7 @@ def solution(numbers, direction):
     numbers = deque(numbers)
     if direction == "right": direction = 1
     if direction == "left": direction = -1
-    numbers.rotate(direction) 
+    numbers.rotate(direction)
     return list(numbers)
 
 def solution(numbers, direction):
@@ -1417,11 +1431,10 @@ function solution(numbers, direction) {
 }
 
 function solution(numbers, direction) {
-  return direction === "right"
-    ? [numbers[numbers.length - 1], ...numbers.slice(0, numbers.length - 1)]
-    : [...numbers.slice(1), numbers[0]];
+    return direction === "right"
+        ? [numbers[numbers.length - 1], ...numbers.slice(0, numbers.length - 1)]
+        : [...numbers.slice(1), numbers[0]];
 }
-
 ```
 
 ## 피자 나눠 먹기 (2)
@@ -1448,31 +1461,178 @@ def solution(n):
 
 ```js
 const solution = (n) => {
-    let piece = 6
+    let piece = 6;
 
-    while(true) {
+    while (true) {
         if (piece % n === 0) {
-            break
+            break;
         }
-        piece += 6
+        piece += 6;
     }
 
-    return piece / 6
-}
+    return piece / 6;
+};
 
 function solution(n) {
     let pizza = 1;
-    while (pizza * 6 % n) {
+    while ((pizza * 6) % n) {
         pizza++;
     }
     return pizza;
 }
-
 ```
 
-## 
+## 숫자 찾기
 
--   링크 : 
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120904
+-   python
+
+```py
+def solution(num, k):
+    num = str(num)
+    k = str(k)
+    if not k in num:
+        answer = -1
+    else:
+        answer = num.find(k) + 1
+    return answer
+```
+
+-   js
+
+```js
+function solution(num, k) {
+    return (
+        num
+            .toString()
+            .split("")
+            .map((el) => Number(el))
+            .indexOf(k) + 1 || -1
+    );
+}
+
+function solution(num, k) {
+    var answer = num.toString();
+    if (answer.includes(k)) {
+        return answer.indexOf(k) + 1;
+    } else {
+        return -1;
+    }
+}
+```
+
+## 주사위의 개수
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120845
+-   python
+
+```py
+def solution(box, n):
+    return (box[0] // n) * (box[1] // n) * (box[2] // n)
+```
+
+-   js
+
+```js
+function solution(box, n) {
+    let [width, length, height] = box;
+
+    return (
+        Math.floor(width / n) * Math.floor(length / n) * Math.floor(height / n)
+    );
+}
+```
+
+## 외계행성의 나이
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120834
+-   python
+
+```py
+def solution(age):
+    answer = ''
+    for i in str(age):
+        answer += str(chr(int(i) + 97))
+    return answer
+```
+
+-   js
+
+```js
+function solution(age) {
+    let char = "abcdefghij";
+    return Array.from(age.toString())
+        .map((t) => char[+t])
+        .join("");
+}
+
+function solution(age) {
+    return age
+        .toString()
+        .split("")
+        .map((v) => "abcdefghij"[v])
+        .join("");
+}
+```
+
+## 암호 해독
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120892
+-   python
+
+```py
+def solution(cipher, code):
+    return cipher[code-1::code]
+```
+
+-   js
+
+```js
+function solution(cipher, code) {
+    return cipher
+        .split("")
+        .filter((_, index) => (index + 1) % code === 0)
+        .join("");
+}
+
+function solution(cipher, code) {
+    var answer = "";
+    for (let i = code - 1; i < cipher.length; i += code) {
+        answer += cipher[i];
+    }
+    return answer;
+}
+```
+
+## 인덱스 바꾸기
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120895
+-   python
+
+```py
+def solution(my_string, num1, num2):
+    answer = my_string[:num1] + my_string[num2] + my_string[num1+1:num2] + my_string[num1] + my_string[num2+1:]
+    return answer
+
+def solution(my_string, num1, num2):
+    s = list(my_string)
+    s[num1],s[num2] = s[num2],s[num1]
+    return ''.join(s)
+```
+
+-   js
+
+```js
+function solution(my_string, num1, num2) {
+    my_string = my_string.split("");
+    [my_string[num1], my_string[num2]] = [my_string[num2], my_string[num1]];
+    return my_string.join("");
+}
+```
+
+##
+
+-   링크 :
 -   python
 
 ```py
@@ -1485,9 +1645,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1500,9 +1660,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1515,9 +1675,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1530,9 +1690,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1545,9 +1705,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1560,9 +1720,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1575,9 +1735,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1590,9 +1750,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1605,9 +1765,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1620,9 +1780,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1635,9 +1795,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1650,9 +1810,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1665,9 +1825,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1680,9 +1840,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1695,9 +1855,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1710,9 +1870,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1725,9 +1885,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1740,9 +1900,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1755,9 +1915,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1770,9 +1930,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1785,9 +1945,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1800,9 +1960,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1815,9 +1975,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1830,9 +1990,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1845,9 +2005,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1860,9 +2020,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1875,9 +2035,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1890,9 +2050,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1905,9 +2065,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1920,9 +2080,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1935,9 +2095,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1950,9 +2110,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1965,9 +2125,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1980,9 +2140,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -1995,9 +2155,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -2010,9 +2170,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
+-   링크 :
 -   python
 
 ```py
@@ -2025,84 +2185,9 @@ function solution(n) {
 
 ```
 
-## 
+##
 
--   링크 : 
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-## 
-
--   링크 : 
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-## 
-
--   링크 : 
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-## 
-
--   링크 : 
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-## 
-
--   링크 : 
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-## 
-
--   링크 : 
+-   링크 :
 -   python
 
 ```py
