@@ -1,5 +1,44 @@
 # Lv0
 
+## 기본 코드
+
+-   python
+
+    ```python
+    # 무한수
+    import math
+
+    math.factorial
+    math.gcd #최대공약수
+    math.pi
+    math.inf
+    -math.inf
+    math.nan
+    # 조합(import itertools로는 쌍을 구할 수 있음)
+    math.perm(n, r) n개 중 r개, 순열
+    math.comb(n, r) n개 중 r개, 조합
+
+    float("inf")
+    -float("inf")
+    ```
+
+    ```python
+    import re
+    # 잘 사용되는 순서
+    # - compile() : 패턴 컴파일
+    # - match() : 문자열의 앞 부분이 매치되는가를 체크, 추출
+    # - sub() : 매치된 부분을 치환
+    # - search() : 선두에 한해서 매치하는지를 체크, 추출
+    # - findall() : 매치된 부분 모두 리스트 반환
+    # - finditer() : 매치된 부분 모두 이터레이터 반환
+    # - spilt() : 정규표현 패턴으로 문자열을 분할
+    ```
+
+-   javascript
+    ```js
+    Infinity - Infinity;
+    ```
+
 ## 몫 구하기
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120805
@@ -14,7 +53,7 @@ def solution(num1, num2):
 
 ```js
 function solution(num1, num2) {
-    return Math.floor(num1 / num2);
+    return ~~(num1 / num2);
 }
 ```
 
@@ -1630,94 +1669,82 @@ function solution(my_string, num1, num2) {
 }
 ```
 
-##
+## 최댓값 만들기 (2)
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120862
 -   python
 
 ```py
+def solution(numbers):
+    numbers.sort()
+    if numbers[0] * numbers[1] > numbers[-1] * numbers[-2]:
+        return numbers[0] * numbers[1]
+    return numbers[-1] * numbers[-2]
 
+def solution(numbers):
+    numbers = sorted(numbers)
+    return max(numbers[0] * numbers[1], numbers[-1]*numbers[-2])
 ```
 
 -   js
 
 ```js
-
+function solution(numbers) {
+    numbers.sort((a, b) => a - b);
+    return Math.max(
+        numbers[0] * numbers[1],
+        numbers[numbers.length - 1] * numbers[numbers.length - 2]
+    );
+}
 ```
 
-##
+## 369게임
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120891
 -   python
 
 ```py
+def solution(order):
+    answer = str(order).count('3')
+    answer += str(order).count('6')
+    answer += str(order).count('9')
+    return answer
 
+def solution(order):
+    return sum(map(lambda x: str(order).count(str(x)), [3, 6, 9]))
 ```
 
 -   js
 
 ```js
+function solution(order) {
+    return ("" + order).split(/[369]/).length - 1;
+}
 
+function solution(order) {
+    const mySet = new Set([3, 6, 9]);
+    return String(order)
+        .split("")
+        .filter((num) => mySet.has(Number(num))).length;
+}
 ```
 
-##
+## 7의 개수
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120912
 -   python
 
 ```py
-
+def solution(array):
+    return ''.join(map(str, array)).count('7')
 ```
 
 -   js
 
 ```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
+function solution(array) {
+    return array.join("").split("7").length - 1;
+}
 ```
 
 ##
@@ -1726,13 +1753,515 @@ function solution(my_string, num1, num2) {
 -   python
 
 ```py
-
+# 7 * 7 = 49를 놓침
+def solution(n):
+    answer = 0
+    if n == 1 or n == 2 or n == 3:
+        return 0
+    for i in range(2, n+1):
+        for j in range(2, i):
+            if i % j == 0:
+                answer += 1
+                break
+    return answer
 ```
 
 -   js
 
 ```js
+// 최고의 풀이
+function solution(n) {
+    if (n === 1) return 0;
+    if (n === 2) return 0;
+    if (n === 3) return 0;
+    if (n === 4) return 1;
+    if (n === 5) return 1;
+    if (n === 6) return 2;
+    if (n === 7) return 2;
+    if (n === 8) return 3;
+    if (n === 9) return 4;
+    if (n === 10) return 5;
+    if (n === 11) return 5;
+    if (n === 12) return 6;
+    if (n === 13) return 6;
+    if (n === 14) return 7;
+    if (n === 15) return 8;
+    if (n === 16) return 9;
+    if (n === 17) return 9;
+    if (n === 18) return 10;
+    if (n === 19) return 10;
+    if (n === 20) return 11;
+    if (n === 21) return 12;
+    if (n === 22) return 13;
+    if (n === 23) return 13;
+    if (n === 24) return 14;
+    if (n === 25) return 15;
+    if (n === 26) return 16;
+    if (n === 27) return 17;
+    if (n === 28) return 18;
+    if (n === 29) return 18;
+    if (n === 30) return 19;
+    if (n === 31) return 19;
+    if (n === 32) return 20;
+    if (n === 33) return 21;
+    if (n === 34) return 22;
+    if (n === 35) return 23;
+    if (n === 36) return 24;
+    if (n === 37) return 24;
+    if (n === 38) return 25;
+    if (n === 39) return 26;
+    if (n === 40) return 27;
+    if (n === 41) return 27;
+    if (n === 42) return 28;
+    if (n === 43) return 28;
+    if (n === 44) return 29;
+    if (n === 45) return 30;
+    if (n === 46) return 31;
+    if (n === 47) return 31;
+    if (n === 48) return 32;
+    if (n === 49) return 33;
+    if (n === 50) return 34;
+    if (n === 51) return 35;
+    if (n === 52) return 36;
+    if (n === 53) return 36;
+    if (n === 54) return 37;
+    if (n === 55) return 38;
+    if (n === 56) return 39;
+    if (n === 57) return 40;
+    if (n === 58) return 41;
+    if (n === 59) return 41;
+    if (n === 60) return 42;
+    if (n === 61) return 42;
+    if (n === 62) return 43;
+    if (n === 63) return 44;
+    if (n === 64) return 45;
+    if (n === 65) return 46;
+    if (n === 66) return 47;
+    if (n === 67) return 47;
+    if (n === 68) return 48;
+    if (n === 69) return 49;
+    if (n === 70) return 50;
+    if (n === 71) return 50;
+    if (n === 72) return 51;
+    if (n === 73) return 51;
+    if (n === 74) return 52;
+    if (n === 75) return 53;
+    if (n === 76) return 54;
+    if (n === 77) return 55;
+    if (n === 78) return 56;
+    if (n === 79) return 56;
+    if (n === 80) return 57;
+    if (n === 81) return 58;
+    if (n === 82) return 59;
+    if (n === 83) return 59;
+    if (n === 84) return 60;
+    if (n === 85) return 61;
+    if (n === 86) return 62;
+    if (n === 87) return 63;
+    if (n === 88) return 64;
+    if (n === 89) return 64;
+    if (n === 90) return 65;
+    if (n === 91) return 66;
+    if (n === 92) return 67;
+    if (n === 93) return 68;
+    if (n === 94) return 69;
+    if (n === 95) return 70;
+    if (n === 96) return 71;
+    if (n === 97) return 71;
+    if (n === 98) return 72;
+    if (n === 99) return 73;
+    if (n === 100) return 74;
+    return undefined;
+}
 
+function solution(n) {
+    let dp = new Array(n + 1).fill(1);
+    for (let i = 2; i <= n; i++) {
+        if (dp[i]) {
+            for (let j = 2; i * j <= n; j++) {
+                dp[i * j] = 0;
+            }
+        }
+    }
+
+    return dp.filter((el) => el === 0).length;
+}
+```
+
+## 모스부호 (1)
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120838
+-   python
+
+```py
+def solution(letter):
+    morse = morse = {
+        ".-": "a",
+        "-...": "b",
+        "-.-.": "c",
+        "-..": "d",
+        ".": "e",
+        "..-.": "f",
+        "--.": "g",
+        "....": "h",
+        "..": "i",
+        ".---": "j",
+        "-.-": "k",
+        ".-..": "l",
+        "--": "m",
+        "-.": "n",
+        "---": "o",
+        ".--.": "p",
+        "--.-": "q",
+        ".-.": "r",
+        "...": "s",
+        "-": "t",
+        "..-": "u",
+        "...-": "v",
+        ".--": "w",
+        "-..-": "x",
+        "-.--": "y",
+        "--..": "z",
+    }
+    answer = ''
+    for i in letter.split(' '):
+        answer += morse[i]
+    return answer
+```
+
+-   js
+
+```js
+function solution(letter) {
+    let morse = {
+        ".-": "a",
+        "-...": "b",
+        "-.-.": "c",
+        "-..": "d",
+        ".": "e",
+        "..-.": "f",
+        "--.": "g",
+        "....": "h",
+        "..": "i",
+        ".---": "j",
+        "-.-": "k",
+        ".-..": "l",
+        "--": "m",
+        "-.": "n",
+        "---": "o",
+        ".--.": "p",
+        "--.-": "q",
+        ".-.": "r",
+        "...": "s",
+        "-": "t",
+        "..-": "u",
+        "...-": "v",
+        ".--": "w",
+        "-..-": "x",
+        "-.--": "y",
+        "--..": "z",
+    };
+    return letter
+        .split(" ")
+        .map((v) => morse[v])
+        .join("");
+}
+```
+
+## 중복된 문자 제거
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120888
+-   python
+
+```py
+def solution(my_string):
+    answer = ''
+    set(my_string)
+    for i in my_string:
+        if not i in answer:
+            answer += i
+    return answer
+
+def solution(my_string):
+    return ''.join(dict.fromkeys(my_string))
+```
+
+-   js
+
+```js
+function solution(my_string) {
+    return [...new Set(my_string)].join("");
+}
+
+function solution(my_string) {
+    let s = new Set(Array.from(my_string));
+    return [...s.values()].join("");
+}
+```
+
+## 2차원으로 만들기
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120842
+-   python
+
+```py
+def solution(num_list, n):
+    answer = []
+    for i in range(len(num_list)//n):
+        answer.append(num_list[:n])
+        num_list = num_list[n:]
+    return answer
+
+import numpy as np
+def solution(num_list, n):
+    li = np.array(num_list).reshape(-1,n)
+    return li.tolist()
+
+# 참고
+# np.array([1, 2, 3, 4, 5, 6, 7, 8]).reshape(4, 2) # 4행 2열
+```
+
+-   js
+
+```js
+function solution(num_list, n) {
+    var answer = [];
+
+    while (num_list.length) {
+        answer.push(num_list.splice(0, n));
+    }
+
+    return answer;
+}
+```
+
+## A로 B 만들기
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120886
+-   python
+
+```py
+def solution(before, after):
+    if len(before) != len(after):
+        return 0
+    before = list(before)
+    after = list(after)
+    for i in before:
+        if not i in after:
+            return 0
+        else:
+            after.remove(i)
+    return 1
+
+def solution(before, after):
+    before=sorted(before)
+    after=sorted(after)
+    if before==after:
+        return 1
+    else:
+        return 0
+```
+
+-   js
+
+```js
+function solution(before, after) {
+    return before.split("").sort().join("") === after.split("").sort().join("")
+        ? 1
+        : 0;
+}
+```
+
+## 팩토리얼
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120848
+-   python
+
+```py
+def factorial(i):
+    result = 1
+    for j in range(1, i+1):
+        result *= j
+    return result
+
+def solution(n):
+    for i in range(1, 11):
+        if factorial(i) <= n:
+            answer = i
+        else:
+            break
+    return answer
+
+from math import factorial
+
+def solution(n):
+    k = 10
+    while n < factorial(k):
+        k -= 1
+    return k
+```
+
+-   js
+
+```js
+function solution(n) {
+    let i = 1;
+    let f = 1;
+    while (f * i < n) f *= ++i;
+    return i;
+}
+```
+
+## k의 개수
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120887
+-   python
+
+```py
+def solution(i, j, k):
+    return str([num for num in range(i, j+1)]).count(str(k))
+
+def solution(i, j, k):
+    return sum(map(lambda v: str(v).count(str(k)), range(i, j+1)))
+```
+
+-   js
+
+```js
+function solution(i, j, k) {
+    let a = "";
+    for (i; i <= j; i++) {
+        a += i;
+    }
+
+    return a.split(k).length - 1;
+}
+```
+
+## 가까운 수
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120890
+-   python
+
+```py
+def solution(array, n):
+    value = sorted(array, key=lambda x:abs(n-x))
+    if abs(value[0] - n) == abs(value[1] - n):
+        return min(value[0], value[1])
+    return sorted(array, key=lambda x:abs(n-x))[0]
+
+def solution(array, n):
+    sorted(array, key=lambda x:(abs(x-n),x-n))[0]
+
+# 첫번째 인자를 오름차순
+# 두번째 인자를 내림차순
+# sorted(a, key=lambda x:(x[0], -x[1]))
+```
+
+-   js
+
+```js
+function solution(array, n) {
+    array.sort((a, b) => a - b);
+    let diff = Infinity;
+    let ind = Infinity;
+    for (let i in array) {
+        let calc = Math.abs(n - array[i]);
+        if (calc < diff) {
+            diff = calc;
+            ind = i;
+        }
+    }
+    return array[ind];
+}
+```
+
+## 한 번만 등장한 문자
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120896
+-   python
+
+```py
+import collections
+
+def solution(s):
+    answer = ''
+    for i, j in collections.Counter(s).items():
+        if j == 1:
+            answer += i
+    return ''.join(sorted(answer))
+
+def solution(s):
+    answer = "".join(sorted([ ch for ch in s if s.count(ch) == 1]))
+    return answer
+```
+
+-   js
+
+```js
+function solution(s) {
+    let res = [];
+    for (let c of s) if (s.indexOf(c) === s.lastIndexOf(c)) res.push(c);
+    return res.sort().join("");
+}
+
+function solution(s) {
+    return [...s]
+        .filter((c) => s.match(new RegExp(c, "g")).length == 1)
+        .sort()
+        .join("");
+}
+```
+
+## 이진수 더하기
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120885
+-   python
+
+```py
+def solution(bin1, bin2):
+    return bin(int(bin1, 2) + int(bin2, 2))[2:]
+```
+
+-   js
+
+```js
+function solution(bin1, bin2) {
+    return (parseInt(bin1, 2) + parseInt(bin2, 2)).toString(2);
+}
+```
+
+## 잘라서 배열로 저장하기
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120913
+-   python
+
+```py
+import math
+
+def solution(my_str, n):
+    answer = []
+    for i in range(math.ceil(len(my_str)/n)):
+        answer.append(my_str[n * i : n * (i+1)])
+    return answer
+
+def solution(my_str, n):
+    return [my_str[i: i + n] for i in range(0, len(my_str), n)]
+```
+
+-   js
+
+```js
+// {n, m}는 바로 앞에 있는 문자가 n번 이상, m번 이하
+function solution(my_str, n) {
+    return my_str.match(new RegExp(`.{1,${n}}`, "g"));
+}
+
+function solution(my_str, n) {
+    let res = [];
+    for (let i = 0; i < my_str.length; i += n) res.push(my_str.slice(i, i + n));
+    return res;
+}
 ```
 
 ##
@@ -1741,13 +2270,279 @@ function solution(my_string, num1, num2) {
 -   python
 
 ```py
+arr = [3, 76, 24]
+#응급순서 = [76, 24, 3]
+응급순서 = sorted(arr, reverse=True)
+list(map(lambda x: 응급순서.index(x) + 1, arr))
 
+def solution(arr):
+    응급순서 = sorted(arr, reverse=True)
+    return list(map(lambda x: 응급순서.index(x) + 1, arr))
+
+def solution(emergency):
+    응급순서 = sorted(emergency, reverse=True)
+    return [응급순서.index(i) + 1 for i in emergency]
 ```
 
 -   js
 
 ```js
+function solution(emergency) {
+    let sorted = emergency.slice().sort((a, b) => b - a);
+    return emergency.map((v) => sorted.indexOf(v) + 1);
+}
+```
 
+## 공 던지기
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120843
+-   python
+
+```py
+def solution(numbers, k):
+    numbers = numbers * k
+    return numbers[(k-1) * 2]
+```
+
+-   js
+
+```js
+function solution(numbers, k) {
+    let answer = [];
+    for (let i = 0; i < k; i++) {
+        answer = answer.concat(numbers);
+    }
+    return answer[(k - 1) * 2];
+}
+```
+
+## 숨어있는 숫자의 덧셈 (2)
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120864
+-   python
+
+```py
+import re
+
+def solution(my_string):
+    return sum(map(int, re.findall(r'[0-9]+', my_string)))
+```
+
+-   js
+
+```js
+function solution(my_string) {
+    return my_string.split(/\D+/).reduce((a, c) => a + parseInt(c), 0);
+}
+```
+
+## 소인수분해
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120852
+-   python
+
+```py
+def solution(n):
+    d = 2
+    s = set()
+    while d <= n:
+        if n % d == 0:
+            s.add(d)
+            n = n / d
+        else:
+            d = d + 1
+    return sorted(list(s))
+```
+
+-   js
+
+```js
+function solution(n) {
+    let answer = [];
+
+    let i = 2;
+    while (i <= n) {
+        if (n % i === 0) {
+            answer.push(i);
+            n = n / i;
+        } else {
+            i++;
+        }
+    }
+
+    return [...new Set(answer.sort((a, b) => (a > b ? 1 : -1)))];
+}
+```
+
+## 종이 자르기
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120922
+-   python
+
+```py
+def solution(M, N):
+    answer = M * N
+    if answer == 1:
+        return 0
+    else:
+        return answer-1
+```
+
+-   js
+
+```js
+function solution(M, N) {
+    return M * N - 1;
+}
+```
+
+## 구슬을 나누는 경우의 수
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120840
+-   python
+
+```py
+import math
+
+def solution(balls, share):
+    answer = 1
+    for i in range(balls, balls-share, -1):
+        answer *= i
+    answer = answer // math.factorial(share)
+    return answer
+
+import math
+
+def solution(balls, share):
+    return math.comb(balls, share)
+```
+
+-   js
+
+```js
+const 팩토리얼 = (num) => (num === 0 ? 1 : num * 팩토리얼(num - 1));
+
+function solution(balls, share) {
+    return Math.round(
+        팩토리얼(balls) / 팩토리얼(balls - share) / 팩토리얼(share)
+    );
+}
+```
+
+## 영어가 싫어요
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120894
+-   python
+
+```py
+import re
+
+def solution(numbers):
+    s = ''
+    d = {
+        'zero' : '0',
+        'one' : '1',
+        'two' : '2',
+        'three' : '3',
+        'four' : '4',
+        'five' : '5',
+        'six' : '6',
+        'seven' : '7',
+        'eight' : '8',
+        'nine' : '9'
+    }
+    for i in re.findall(r'(zero|one|two|three|four|five|six|seven|eight|nine)', numbers):
+        s += d[i]
+    return int(s)
+
+def solution(numbers):
+    for num, eng in enumerate(["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]):
+        numbers = numbers.replace(eng, str(num))
+    return int(numbers)
+```
+
+-   js
+
+```js
+function solution(numbers) {
+    const obj = {
+        zero: 0,
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4,
+        five: 5,
+        six: 6,
+        seven: 7,
+        eight: 8,
+        nine: 9,
+    };
+
+    const num = numbers.replace(
+        /zero|one|two|three|four|five|six|seven|eight|nine/g,
+        (v) => {
+            return obj[v];
+        }
+    );
+
+    return Number(num);
+}
+```
+
+## 외계어 사전
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120869
+-   python
+
+```py
+def solution(spell, dic):
+    for i in dic:
+        if set(spell) == set(i):
+            return 1
+    return 2
+
+def solution(spell, dic):
+    for d in dic:
+        if sorted(d) == sorted(spell):
+            return 1
+    return 2
+
+# list('hello') == list('hello')
+# set('hello') == set('hello')
+# 2개 모두 True
+```
+
+-   js
+
+```js
+function solution(spell, dic) {
+    return dic.some((s) => spell.sort().toString() == [...s].sort().toString())
+        ? 1
+        : 2;
+}
+// some() 메서드는 배열 안의 어떤 요소라도 주어진 판별 함수를 통과하는지 테스트
+
+// Array('hello') == Array('hello')
+// new Set('hello') == new Set('hello')
+// 2개 모두 false
+```
+
+## 문자열 계산하기
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120902
+-   python
+
+```py
+def solution(my_string):
+    return eval(my_string)
+
+solution=eval
+```
+
+-   js
+
+```js
+var solution = eval;
 ```
 
 ##
@@ -1756,268 +2551,115 @@ function solution(my_string, num1, num2) {
 -   python
 
 ```py
-
+# if가 밖에 있을 때에 실행 안됨
+# 안으로 들어와야 함
+# 예를 들어 보드가 11이면
+# -100갔다가 뒤로 2번오면
+# -98에 위치되어 -5가 되어야 하는데
+# 실제로는 -3임
+def solution(keyinput, board):
+    answer = []
+    x = 0
+    y = 0
+    for i in keyinput:
+        if i == 'right':
+            x +=1
+        elif i == 'left':
+            x -=1
+        elif i == 'up':
+            y += 1
+        elif i == 'down':
+            y -= 1
+        if abs(x) >= (board[0] // 2):
+            x = (x // abs(x)) * (board[0] // 2)
+        if abs(y) >= (board[1] // 2):
+            y = (y // abs(y)) * (board[1] // 2)
+    return [x, y]
 ```
 
 -   js
 
 ```js
-
+function solution(keyinput, board) {
+    let res = [0, 0];
+    for (let p of keyinput) {
+        switch (p) {
+            case "left":
+                if (-res[0] < board[0] / 2 - 1) res[0]--;
+                break;
+            case "right":
+                if (res[0] < board[0] / 2 - 1) res[0]++;
+                break;
+            case "up":
+                if (res[1] < board[1] / 2 - 1) res[1]++;
+                break;
+            case "down":
+                if (-res[1] < board[1] / 2 - 1) res[1]--;
+                break;
+        }
+    }
+    return res;
+}
 ```
 
-##
+## 문자열 밀기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120921
 -   python
 
 ```py
+import collections
 
+def solution(A, B):
+    if A == B:
+        return 0
+    비교 = collections.deque(A)
+    for i in range(len(A)):
+        비교.rotate(1)
+        if ''.join(비교) == B:
+            return i+1
+    return -1
+
+
+solution=lambda a,b:(b*2).find(a)
+
+
+def solution(A, B):
+    #if A == "":
+    #    return 0
+
+    AA = A+A
+    answer = AA.find(B)
+
+    if answer >0:
+        answer = len(A) - answer
+
+    return answer
 ```
 
 -   js
 
 ```js
-
+let solution = (a, b) => (b + b).indexOf(a);
 ```
 
-##
+## 유한소수 판별하기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120878
 -   python
 
 ```py
+def solution(a, b):
 
+    return 1 if a/b * 1000 % 1 == 0 else 2
 ```
 
 -   js
 
 ```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
-```
-
-##
-
--   링크 :
--   python
-
-```py
-
-```
-
--   js
-
-```js
-
+function solution(a, b) {
+    return Number((a / b).toFixed(10)) == a / b ? 1 : 2;
+}
 ```
 
 ##
