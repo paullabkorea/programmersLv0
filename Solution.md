@@ -1094,8 +1094,7 @@ def solution(s1, s2):
 
 ```js
 function solution(s1, s2) {
-    const i = s1.filter((x) => s2.includes(x));
-    return i.length;
+    return s1.filter((x) => s2.includes(x)).length;
 }
 
 function solution(s1, s2) {
@@ -1268,7 +1267,7 @@ function solution(my_string) {
     return my_string
         .match(/\d/g)
         .sort((a, b) => a - b)
-        .map((n) => Number(n));
+        .map((n) => parseInt(n));
 }
 
 function solution(my_string) {
@@ -1541,13 +1540,7 @@ def solution(num, k):
 
 ```js
 function solution(num, k) {
-    return (
-        num
-            .toString()
-            .split("")
-            .map((el) => Number(el))
-            .indexOf(k) + 1 || -1
-    );
+    return num.toString().split("").indexOf(String(k)) + 1 || -1;
 }
 
 function solution(num, k) {
@@ -2264,9 +2257,9 @@ function solution(my_str, n) {
 }
 ```
 
-##
+## 진료순서 정하기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120835
 -   python
 
 ```py
@@ -2545,9 +2538,9 @@ solution=eval
 var solution = eval;
 ```
 
-##
+## 캐릭터의 좌표
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120861
 -   python
 
 ```py
@@ -2662,19 +2655,36 @@ function solution(a, b) {
 }
 ```
 
-##
+## 직사각형 넓이 구하기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120860
 -   python
 
 ```py
+def solution(dots):
+    [[x1, y1], [x2, y2], [x3, y3], [x4, y4]] = dots
+    return (max([x1, x2, x3, x4]) - min([x1, x2, x3, x4])) * (max([y1, y2, y3, y4]) - min([y1, y2, y3, y4]))
 
+    def solution(dots):
+        return (max(dots)[0] - min(dots)[0])*(max(dots)[1] - min(dots)[1])
 ```
 
 -   js
 
 ```js
+function solution(dots) {
+    let x = [],
+        y = [];
 
+    for (let pos of dots) {
+        x.push(pos[0]);
+        y.push(pos[1]);
+    }
+
+    return (
+        (Math.max(...x) - Math.min(...x)) * (Math.max(...y) - Math.min(...y))
+    );
+}
 ```
 
 ##
