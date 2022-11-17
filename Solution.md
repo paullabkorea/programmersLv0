@@ -2687,64 +2687,126 @@ function solution(dots) {
 }
 ```
 
-##
+## 삼각형의 완성조건 (2)
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120868
 -   python
 
 ```py
+def solution(sides):
+    a = max(sides) - min(sides)
+    b = max(sides) + min(sides)
+    return b-a-1
 
+def solution(sides):
+    return sum(sides) - max(sides) + min(sides) - 1
 ```
 
 -   js
 
 ```js
-
+function solution(sides) {
+    return Math.min(...sides) * 2 - 1;
+}
 ```
 
-##
+## 컨트롤 제트
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120853
 -   python
 
 ```py
-
+def solution(s):
+    result = []
+    for i in s.split(' '):
+        if i == 'Z':
+            result.pop()
+        else:
+            result.append(int(i))
+    return sum(result)
 ```
 
 -   js
 
 ```js
-
+function solution(s) {
+    s = s.split(" ");
+    let arr = [];
+    for (let v of s) v === "Z" ? (arr.length ? arr.pop() : "") : arr.push(v);
+    return arr.reduce((a, v) => a + +v, 0);
+}
 ```
 
-##
+## 등수 매기기
 
 -   링크 :
 -   python
 
 ```py
+def solution(score):
+    평균 = [(i + j) / 2 for i, j in score]
+    정렬된점수 = sorted(평균, reverse=True)
+    return [i+1 for i in list(map(정렬된점수.index, 평균))]
 
+def solution(score):
+    a = sorted([sum(i) for i in score], reverse = True)
+    return [a.index(sum(i))+1 for i in score]
 ```
 
 -   js
 
 ```js
+function solution(score) {
+    let avg = score.map((v) => (v[0] + v[1]) / 2);
+    let sorted = avg.slice().sort((a, b) => b - a);
+    return avg.map((v) => sorted.indexOf(v) + 1);
+}
 
+function solution(score) {
+    return score.map((el) => {
+        return (
+            score.filter((v) => (v[0] + v[1]) / 2 > (el[0] + el[1]) / 2)
+                .length + 1
+        );
+    });
+}
 ```
 
-##
+## 로그인 성공?
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120883
 -   python
 
 ```py
+def solution(id_pw, db):
+    result = 'fail'
+    if str(id_pw) in str(db):
+        result = 'login'
+    elif str(id_pw[0]) in str(db):
+        if id_pw[0] in [i[0] for i in db]:
+            result = 'wrong pw'
+    else:
+        result = 'fail'
+    return result
 
+def solution(id_pw, db):
+    if db_pw := dict(db).get(id_pw[0]):
+        return "login" if db_pw == id_pw[1] else "wrong pw"
+    return "fail"
 ```
 
 -   js
 
 ```js
+function solution(id_pw, db) {
+    db = db.filter((v) => v[0] === id_pw[0]);
 
+    if (!db.length) return "fail";
+
+    for (let d of db) if (d[1] === id_pw[1]) return "login";
+
+    return "wrong pw";
+}
 ```
 
 ##
