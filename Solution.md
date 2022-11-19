@@ -2809,34 +2809,89 @@ function solution(id_pw, db) {
 }
 ```
 
-##
+## 특이한 정렬
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120880
 -   python
 
 ```py
+def solution(numlist, n):
+    d = [[i, abs(i-n)] for i in numlist]
+    return list(map(lambda x:x[0], sorted(d, key=lambda x:(x[1], -x[0]))))
 
+def solution(numlist, n):
+    answer = sorted(numlist,key = lambda x : (abs(x-n), n-x))
+    return answer
+
+# {i:i-n for i in numlist}
+# [[i, i-n] for i in numlist]
+# sorted(d, key=lambda x:x[1])
+# sorted(d, key=lambda x:(x[1], -x[0])) # 다중조건
 ```
 
 -   js
 
 ```js
+function solution(numlist, n) {
+    return numlist.sort((a, b) => Math.abs(a - n) - Math.abs(b - n) || b - a);
+}
 
+function solution(numlist, n) {
+    numlist.sort((a, b) => {
+        let n1 = Math.abs(a - n),
+            n2 = Math.abs(b - n);
+
+        return n1 < n2 ? -1 : n1 === n2 ? (a < b ? 1 : -1) : 1;
+    });
+    return numlist;
+}
 ```
 
-##
+## 분수의 덧셈
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120808
 -   python
 
 ```py
+import fractions
 
+def solution(denum1, num1, denum2, num2):
+    분자 = (denum1 * num2) + (denum2 * num1)
+    분모 = num1 * num2
+    분수 = fractions.Fraction(분자, 분모)
+    분자 = 분수.numerator
+    분모 = 분수.denominator
+    return [분자, 분모]
+
+from fractions import Fraction
+
+def solution(denum1, num1, denum2, num2):
+    answer = Fraction(denum1, num1) + Fraction(denum2, num2)
+    return [answer.numerator, answer.denominator]
+
+import math
+
+def solution(denum1, num1, denum2, num2):
+    denum = denum1 * num2 + denum2 * num1
+    num = num1 * num2
+    gcd = math.gcd(denum, num)
+    return [denum//gcd, num//gcd]
 ```
 
 -   js
 
 ```js
+function fnGCD(a, b) {
+    return a % b ? fnGCD(b, a % b) : b;
+}
 
+function solution(denum1, num1, denum2, num2) {
+    let denum = denum1 * num2 + denum2 * num1;
+    let num = num1 * num2;
+    let gcd = fnGCD(denum, num); //최대공약수
+
+    return [denum / gcd, num / gcd];
+}
 ```
 
 ##
