@@ -2894,49 +2894,173 @@ function solution(denum1, num1, denum2, num2) {
 }
 ```
 
-##
+## 치킨 쿠폰
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120884
 -   python
 
 ```py
+def solution(chicken):
+    answer = 0
+    while chicken >= 10:
+        chicken, mod = divmod(chicken, 10)
+        answer += chicken
+        chicken += mod
+    return answer
 
+def solution(chicken):
+    answer = (max(chicken, 1) - 1) // 9
+    return answer
+
+def solution(chicken):
+    return int(chicken*0.11111111111)
 ```
 
 -   js
 
 ```js
-
+function solution(chicken) {
+    let answer = 0;
+    let rest = 0;
+    while (chicken > 1) {
+        answer += parseInt(chicken / 10);
+        rest += chicken % 10;
+        chicken = chicken / 10;
+    }
+    answer += parseInt(rest / 10);
+    return answer;
+}
 ```
 
-##
+## 저주의 숫자 3
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120871
 -   python
 
 ```py
+def solution(n):
+    return list(filter(lambda x: '3' not in str(x), filter(lambda x: x % 3 != 0, range(n*1000))))[n-1]
 
+def solution(n):
+    answer = 0
+    for _ in range(n):
+        answer += 1
+        while answer % 3 == 0 or '3' in str(answer):
+            answer += 1
+    return answer
 ```
 
 -   js
 
 ```js
+function solution(n) {
+    var count3x = 0;
+    while (n > 0) {
+        count3x = count3x + 1;
+        if (count3x.toString().split("").includes("3")) {
+            continue;
+        }
+        if (count3x % 3 == 0) {
+            continue;
+        }
 
+        n = n - 1;
+    }
+    return count3x;
+}
+
+function solution(n) {
+    let arr = [];
+    let num = 0;
+    while (arr.length !== n && ++num)
+        if (num % 3 !== 0 && !("" + num).includes("3")) arr.push(num);
+    return arr.pop();
+}
 ```
 
-##
+## 최빈값 구하기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120812
 -   python
 
 ```py
+# from collections import Counter
 
+# x = Counter([1, 2, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+# sorted(x, key=lambda v:x[v], reverse=True)
+
+from collections import Counter
+
+def solution(array):
+    if len(array) == 1:
+        return array[0]
+    x = Counter(array)
+    정렬 = sorted(x.items(), key=lambda v:v[1], reverse=True)
+    if 정렬[0][1] == 정렬[1][1]:
+        return -1
+    return 정렬[0][0]
+
+# # 가장 자주 나오는 값
+# answer.most_common(1)[0][0]
+
+# # 가장 자주 나오는 값의 개수
+# answer.most_common(2)[0][1]
+
+# # 두번째로 가장 자주 나오는 값의 개수
+# answer.most_common(2)[1][1]
+
+from collections import Counter
+
+def solution(array):
+    answer = Counter(array)
+
+    if len(answer) == 1:
+        return answer.most_common(1)[0][0]
+    else:
+        first = answer.most_common(2)[0][1]
+        second = answer.most_common(2)[1][1]
+        if first == second:
+            return -1
+        else:
+            return answer.most_common(1)[0][0]
+
+def solution(array):
+    while len(array) != 0:
+        for i, a in enumerate(set(array)):
+            array.remove(a)
+        if i == 0: return a
+    return -1
 ```
 
 -   js
 
 ```js
+const solution = (array) => {
+    const counter = array.reduce(
+        (acc, cur) => ({
+            ...acc,
+            [cur]: (acc[cur] || 0) + 1,
+        }),
+        {}
+    );
 
+    const items = Object.keys(counter)
+        .map((key) => [Number(key), counter[key]])
+        .sort((a, b) => b[1] - a[1]);
+
+    if (items[0][1] === items?.[1]?.[1]) {
+        return -1;
+    }
+
+    return items[0][0];
+};
+
+function solution(array) {
+    let m = new Map();
+    for (let n of array) m.set(n, (m.get(n) || 0) + 1);
+    m = [...m].sort((a, b) => b[1] - a[1]);
+    return m.length === 1 || m[0][1] > m[1][1] ? m[0][0] : -1;
+}
 ```
 
 ##
