@@ -3063,19 +3063,73 @@ function solution(array) {
 }
 ```
 
-##
+## 다항식 더하기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120863
 -   python
 
 ```py
+def solution(polynomial):
+    # 양수만 고려했어도 됨.
+    x = polynomial.split(' ')
+    x항 = 0
+    일반항 = 0
+    for i, value in enumerate(x):
+        if 'x' in value:
+            if len(value) == 1:
+                if x[i-1] == '+' or i == 0:
+                    x항 += 1
+            else:
+                if x[i-1] == '+' or i == 0:
+                    x항 += int(value[:-1])
+        elif value != '+':
+            일반항 += int(value)
 
+    if 일반항 == 0 and x항 == 0:
+        return f'0'
+    elif 일반항 == 0 and x항 != 0:
+        if x항 == 1:
+            return 'x'
+        return f'{x항}x'
+    elif 일반항 != 0 and x항 == 0:
+        return f'{일반항}'
+    elif 일반항 < 0 and x항 > 0:
+        if x항 == 1:
+            return f'x - {일반항}'
+        return f'{x항}x - {일반항}'
+    elif 일반항 > 0 and x항 > 0:
+        if x항 == 1:
+            return f'x + {일반항}'
+        return f'{x항}x + {일반항}'
+    elif 일반항 > 0 and x항 < 0:
+        if x항 == -1:
+            return f'-x + {일반항}'
+        return f'-{x항}x + {일반항}'
+    elif 일반항 < 0 and x항 < 0:
+        if x항 == -1:
+            return f'-x + {일반항}'
+        return f'-{x항}x + {일반항}'
 ```
 
 -   js
 
 ```js
+function solution(polynomial) {
+    const arr = polynomial.split(" + ");
+    const xNum = arr
+        .filter((n) => n.includes("x"))
+        .map((n) => n.replace("x", "") || "1")
+        .reduce((acc, cur) => acc + parseInt(cur, 10), 0);
+    const num = arr
+        .filter((n) => !isNaN(n))
+        .reduce((acc, cur) => acc + parseInt(cur, 10), 0);
 
+    let answer = [];
+    if (xNum) answer.push(`${xNum === 1 ? "" : xNum}x`);
+    if (num) answer.push(num);
+
+    return answer.join(" + ");
+}
 ```
 
 ##
