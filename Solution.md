@@ -3132,6 +3132,397 @@ function solution(polynomial) {
 }
 ```
 
+## 다음에 올 숫자
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120924
+-   python
+
+```py
+# 왜 오답이 나왔는지 모르겠음
+s = [2, 4, 6]
+s = [1, 2, 3, 4]
+s = [2, 4, 8]
+s = [3, 6, 12]
+s = [-3, -6, -12]
+s = [-3, 6, -12]
+
+if s[1] - s[0] == s[2] - s[1]:
+    등차 = s[1] - s[0]
+    s.append((len(s) + 1) * 등차)
+else:
+    등비 = s[1] // s[0]
+    s.append(s[0] * (등비**len(s)))
+
+
+def solution(common):
+    if common[2] - common[1] == common[1] - common[0]:
+        return common[-1] + (common[1] - common[0])
+    else:
+        return common[-1] * (common[2] // common[1])
+
+def solution(common):
+    answer = 0
+    a,b,c = common[:3]
+    if (b-a) == (c-b):
+        return common[-1]+(b-a)
+    else:
+        return common[-1] * (b//a)
+    return answer
+```
+
+-   js
+
+```js
+function solution(common) {
+    if (common[1] - common[0] == common[2] - common[1]) {
+        return common.pop() + common[1] - common[0];
+    } else {
+        return (common.pop() * common[1]) / common[0];
+    }
+}
+```
+
+## OX퀴즈
+
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120907
+-   python
+
+```py
+def solution(quiz):
+    answer = []
+    for i in quiz:
+        c = i.split('=')
+        for j in range (len(c)):
+            if eval(c[0]) == eval(c[1]):
+                answer.append('O')
+                break
+            else:
+                answer.append('X')
+                break
+    return answer
+
+
+
+def valid(equation):
+    equation = equation.replace('=', '==')
+    return eval(equation)
+
+def solution(equations):
+    return ["O" if valid(equation) else "X" for equation in equations]
+```
+
+-   js
+
+```js
+function solution(quiz) {
+    return quiz
+        .map((el) => el.split(" = "))
+        .map((el) => {
+            return eval(el[0]) == el[1] ? "O" : "X";
+        });
+}
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
+##
+
+-   링크 :
+-   python
+
+```py
+
+```
+
+-   js
+
+```js
+
+```
+
 ##
 
 -   링크 :
