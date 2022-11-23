@@ -373,6 +373,9 @@ def solution(array, height):
     array.append(height)
     array.sort(reverse=True)
     return array.index(height)
+
+def solution(array, height):
+    return len(list(filter(lambda x:x > height, array)))
 ```
 
 -   js
@@ -3223,34 +3226,149 @@ function solution(quiz) {
 }
 ```
 
-##
+## 연속된 수의 합
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120923
 -   python
 
 ```py
+n = 3
+s = 12
+def solution(num, total):
+    x = [i for i in range(-500, 501)]
+    for i in range(1001):
+        if(sum(x[i:i+num]) == total):
+            return x[i:i+num]
+solution(n, s)
 
+def solution(num, total):
+    return [(total - (num * (num - 1) // 2)) // num + i for i in range(num)]
 ```
 
 -   js
 
 ```js
+function solution(num, total) {
+    var min = Math.ceil(total / num - Math.floor(num / 2));
+    var max = Math.floor(total / num + Math.floor(num / 2));
 
+    return new Array(max - min + 1).fill(0).map((el, i) => {
+        return i + min;
+    });
+}
+
+function solution(num, total) {
+    const a = ((2 * total) / num + 1 - num) / 2;
+    return Array(num)
+        .fill()
+        .map((_, i) => i + a);
+}
 ```
 
-##
+## 안전지대
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120866
 -   python
 
 ```py
+import numpy as np
 
+def solution(board):
+    print('--------')
+    board = np.array(board)
+    print(board)
+    print(np.where(board == 1))
+    rows, cols = np.where(board == 1)
+    print(list(zip(rows, cols)))
+    for r, c in zip(rows, cols):
+        if r != 0 and c != 0:
+            board[r-1:r+2, c-1:c+2] = 1
+        elif r == 0 and c != 0:
+            board[0:r+2, c-1:c+2] = 1
+        elif r != 0 and c == 0:
+            board[r-1:r+2, 0:c+2] = 1
+        elif r == 0 and c == 0:
+            board[0:r+2, 0:c+2] = 1
+        else:
+            board[r-1:r+2, c-1:c+2] = 1
+    print(board)
+    return len(board[board==0])
+
+
+solution([[0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 0, 0, 0]])
+
+solution([[0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 1, 0, 1],
+          [0, 0, 1, 0, 0],
+          [0, 0, 0, 0, 0]])
+
+
+solution([[0, 0, 0, 1, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 1],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0]])
+
+solution([[0, 0, 0, 1, 0],
+          [1, 0, 0, 0, 0],
+          [0, 0, 0, 0, 1],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0]])
+
+
+def solution(board):
+    n = len(board)
+    danger = set()
+    for i, row in enumerate(board):
+        for j, x in enumerate(row):
+            if not x:
+                continue
+            danger.update((i+di, j+dj) for di in [-1,0,1] for dj in [-1, 0, 1])
+    return n*n - sum(0 <= i < n and 0 <= j < n for i, j in danger)
 ```
 
 -   js
 
 ```js
+function solution(b) {
+    const directions = [
+        [0, 0],
+        [0, 1],
+        [0, -1],
+        [1, 1],
+        [1, 0],
+        [1, -1],
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+    ];
+    let bombSet = new Set();
 
+    for (let i = 0; i < b.length; i++) {
+        for (let j = 0; j < b[i].length; j++) {
+            if (b[i][j] == 1) {
+                directions.forEach((el) => {
+                    let [nextX, nextY] = el;
+                    [nextX, nextY] = [i + nextX, j + nextY];
+                    if (
+                        nextX >= 0 &&
+                        nextX < b.length &&
+                        nextY >= 0 &&
+                        nextY < b[i].length
+                    ) {
+                        bombSet.add(nextX + " " + nextY);
+                    }
+                });
+            }
+        }
+    }
+    return b.length * b[0].length - bombSet.size;
+}
 ```
 
 ##
