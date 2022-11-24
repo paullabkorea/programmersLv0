@@ -3371,12 +3371,45 @@ function solution(b) {
 }
 ```
 
-##
+## 겹치는 선분의 길이
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120876
 -   python
 
 ```py
+# 오답
+def solution(lines):
+    하나, 둘, 셋 = lines
+    길이 = []
+    if 하나[1] <= 둘[0]:
+        pass
+    else:
+        길이.append([min(둘[1], 하나[1]), max(둘[0], 하나[0])])
+    if 하나[1] <= 셋[0]:
+        pass
+    else:
+        길이.append([min(하나[1], 셋[1]), max(하나[0], 셋[0])])
+    if 둘[1] <= 셋[0]:
+        pass
+    else:
+        길이.append([min(셋[1], 둘[1]), max(셋[0], 둘[0])])
+
+    # [길이[0][0], 길이[1][0], 길이[2][0]]
+    # [길이[0][1], 길이[1][1], 길이[2][1]]
+    if 길이 == []:
+        return 0
+    # 중간에 끊어진 경우가 있을 수 있음, test case 1번과 9번 통과 못함
+    # 반례 : [[0, 5], [3, 9], [8, 9]]
+    시작 = [i[0] for i in 길이]
+    끝 = [i[1] for i in 길이]
+    print(길이)
+    # return max(시작) - min(끝) - (max(시작) - min(끝))
+
+solution([[0, 5], [3, 9], [8, 9]])
+solution([[0, 5], [3, 9], [1, 10]])
+solution([[0, 1], [2, 5], [3, 9]])
+
+# 정답
 
 ```
 
