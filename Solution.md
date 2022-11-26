@@ -525,9 +525,9 @@ function solution(strlist) {
 }
 ```
 
-## https://school.programmers.co.kr/learn/courses/30/lessons/120814
+## 피자 나눠 먹기 (1)
 
--   링크 : 피자 나눠 먹기 (1)
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120814
 -   python
 
 ```py
@@ -3403,50 +3403,191 @@ def solution(lines):
     시작 = [i[0] for i in 길이]
     끝 = [i[1] for i in 길이]
     print(길이)
-    # return max(시작) - min(끝) - (max(시작) - min(끝))
+    # return max(시작) - min(끝)
 
 solution([[0, 5], [3, 9], [8, 9]])
 solution([[0, 5], [3, 9], [1, 10]])
 solution([[0, 1], [2, 5], [3, 9]])
 
 # 정답
+def solution(lines):
+    lines.sort(key=lambda x:x[1])
+    하나, 둘, 셋 = lines
+    길이 = []
+    if 하나[1] <= 둘[0]:
+        pass
+    else:
+        길이.append([max(둘[0], 하나[0]), min(둘[1], 하나[1])])
+    if 하나[1] <= 셋[0]:
+        pass
+    else:
+        길이.append([max(하나[0], 셋[0]), min(하나[1], 셋[1])])
+    if 둘[1] <= 셋[0]:
+        pass
+    else:
+        길이.append([max(셋[0], 둘[0]), min(셋[1], 둘[1])])
 
+    if 길이 == []:
+        return 0
+    print(길이)
+    l = 길이
+    # 중간에 끊어진 경우가 있을 수 있음, test case 1번과 9번 통과 못함
+    # 반례 : [[0, 5], [3, 9], [8, 9]]
+    if len(l) == 1:
+        return l[0][1] - l[0][0]
+    elif len(l) == 2:
+        if l[0][1] <= l[1][0]:
+            return (l[0][1] - l[0][0]) + (l[1][1] - l[1][0])
+        else:
+            return max(l[1]) - min(l[0])
+    elif len(l) == 3:
+        # 겹치지 않고 and 겹치지 않는다
+        if l[0][1] <= l[1][0] and l[1][1] <= l[2][0]:
+            return (l[0][1] - l[0][0]) + (l[1][1] - l[1][0]) + (l[2][1] - l[2][0])
+        # 모두 겹친다
+        elif l[0][1] > l[1][0] and l[1][1] > l[2][0]:
+            시작 = [i[0] for i in l]
+            끝 = [i[1] for i in l]
+            return max(끝) - min(시작)
+        # 부분적으로 겹친다
+        else:
+            # 겹치지 않고 and 겹친다
+            if l[0][1] <= l[1][0] and l[1][1] > l[2][0]:
+                return (l[0][1] - l[0][0]) + (max(l[2]) - min(l[1]))
+            # 겹치고 and 겹치지 않는다
+            if l[0][1] > l[1][0] and l[1][1] <= l[2][0]:
+                return (max(l[1]) - min(l[0])) + (l[2][1] - l[2][0])
+            return max(l[2][1]) - min(l[0][1])
+
+
+solution([[0, 1], [2, 5], [3, 9]])
+solution([[0, 5], [3, 9], [8, 9]])
+solution([[0, 5], [3, 9], [1, 10]])
+
+# 정답 코드 2
+def solution(lines):
+    sets = [set(range(min(l), max(l))) for l in lines]
+    return len(sets[0] & sets[1] | sets[0] & sets[2] | sets[1] & sets[2])
 ```
 
 -   js
 
 ```js
+function solution(lines) {
+    let line = new Array(200).fill(0);
 
+    lines.forEach(([a, b]) => {
+        for (; a < b; a++) line[a + 100]++;
+    });
+
+    return line.reduce((a, c) => (c > 1 ? a + 1 : a), 0);
+}
 ```
 
-##
+## 평행
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120875
 -   python
 
 ```py
+from itertools import combinations
 
+def solution(dots):
+    a = []
+    for (x1,y1),(x2,y2) in combinations(dots,2):
+        a.append((y2-y1,x2-x1))
+
+    for (x1,y1),(x2,y2) in combinations(a,2):
+        if x1*y2==x2*y1:
+            return 1
+    return 0
 ```
 
 -   js
 
 ```js
+function solution(dots) {
+    const leans = [];
 
+    for (let i = 0; i < dots.length; i++) {
+        const dotA = dots[i];
+        for (let j = i + 1; j < dots.length; j++) {
+            const dotB = dots[j];
+            const lean = (dotB[1] - dotA[1]) / (dotB[0] - dotA[0]);
+
+            if (leans.includes(lean)) return 1;
+            else leans.push(lean);
+        }
+    }
+
+    return 0;
+}
 ```
 
-##
+## 옹알이 (1)
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120956
 -   python
 
 ```py
+def solution(babbling):
+    c = 0
+    for b in babbling:
+        for w in [ "aya", "ye", "woo", "ma" ]:
+            if w * 2 not in b:
+                b = b.replace(w, ' ')
+        if len(b.strip()) == 0:
+            c += 1
+    return c
+
+def solution(babbling):
+    answer = 0
+    prono = ['aya','ye','woo','ma']
+    for i in babbling :
+        for j in prono :
+            if j+j in i :
+                break
+            else :
+                i = i.replace(j,"").strip()
+        if i :
+            continue
+        else :
+            answer += 1
+    return answer
 
 ```
 
 -   js
 
 ```js
+function solution(babbling) {
+    let df = ["aya", "ye", "woo", "ma"];
+    let res = 0;
+    for (let w of babbling) {
+        if (df.some((f) => w.includes(f + f))) continue;
 
+        let rest = df.reduce((a, f) => a.replaceAll(f, ""), w);
+
+        if (rest.length > 0) continue;
+
+        res++;
+    }
+
+    return res;
+}
+function solution(babbling) {
+    const 가능한_발음_목록 = ["aya", "ye", "woo", "ma"];
+    return babbling.filter((e) => {
+        가능한_발음_목록.forEach((가능한_발음) => {
+            e = e.replace(
+                new RegExp(가능한_발음 + 가능한_발음, "gi"),
+                "어려웡ㅎ"
+            );
+            e = e.replace(new RegExp(가능한_발음, "gi"), "");
+        });
+        return e === "";
+    }).length;
+}
 ```
 
 ##
