@@ -1105,6 +1105,11 @@ function solution(s1, s2) {
     for (let v of s1) if (s2.includes(v)) count++;
     return count;
 }
+
+function solution(s1, s2) {
+    var answer = 0;
+    return s1.length + s2.length - new Set([...s1, ...s2]).size;
+}
 ```
 
 ## 특정 문자 제거하기
