@@ -1380,7 +1380,7 @@ function solution(my_string) {
 }
 ```
 
-## 가위 바위 보 - 22년 12월 18일
+## 가위 바위 보 - 22년 12월 10일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120839
 -   python
@@ -1443,7 +1443,7 @@ function solution(my_string) {
 }
 ```
 
-## 배열 회전시키기
+## 배열 회전시키기 - 22년 12월 11일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120844
 -   python
@@ -1480,6 +1480,15 @@ function solution(numbers, direction) {
     return direction === "right"
         ? [numbers[numbers.length - 1], ...numbers.slice(0, numbers.length - 1)]
         : [...numbers.slice(1), numbers[0]];
+}
+
+function solution(numbers, direction) {
+    if (direction === "right") {
+        numbers = [numbers.pop(), ...numbers];
+    } else {
+        numbers = [...numbers.slice(1), numbers.shift()];
+    }
+    return numbers;
 }
 ```
 
@@ -1583,7 +1592,7 @@ function solution(box, n) {
 }
 ```
 
-## 외계행성의 나이
+## 외계행성의 나이 - 22년 12월 11일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120834
 -   python
@@ -1713,6 +1722,11 @@ def solution(order):
 
 def solution(order):
     return sum(map(lambda x: str(order).count(str(x)), [3, 6, 9]))
+
+list(filter(lambda x : x in '369', '29423'))
+
+import re
+re.findall('[369]', '29423')
 ```
 
 -   js
@@ -1720,6 +1734,11 @@ def solution(order):
 ```js
 function solution(order) {
     return ("" + order).split(/[369]/).length - 1;
+}
+
+function solution(order) {
+    let value = order.toString().match(/[369]/g) ?? [];
+    return value.length;
 }
 
 function solution(order) {
@@ -1748,9 +1767,9 @@ function solution(array) {
 }
 ```
 
-##
+## 합성수 찾기
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120846
 -   python
 
 ```py
@@ -1969,7 +1988,7 @@ function solution(letter) {
 }
 ```
 
-## 중복된 문자 제거
+## 중복된 문자 제거 - 12월 14일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120888
 -   python
@@ -1977,7 +1996,7 @@ function solution(letter) {
 ```py
 def solution(my_string):
     answer = ''
-    set(my_string)
+    set(my_string) # 순서를 보장하지 않음
     for i in my_string:
         if not i in answer:
             answer += i
