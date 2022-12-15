@@ -2055,7 +2055,7 @@ function solution(num_list, n) {
 }
 ```
 
-## A로 B 만들기
+## A로 B 만들기 - 12월 15일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120886
 -   python
@@ -2080,6 +2080,9 @@ def solution(before, after):
         return 1
     else:
         return 0
+
+def solution(before, after):
+    return 1 if sorted(list(before)) == sorted(list(after)) else 0
 ```
 
 -   js
@@ -2092,12 +2095,30 @@ function solution(before, after) {
 }
 ```
 
-## 팩토리얼
+## 팩토리얼 - 12월 15일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120848
 -   python
 
 ```py
+def solution(n):
+    f = 1
+    i = 1
+    while f <= n:
+        i += 1
+        f *= i
+    return i - 1
+
+from math import factorial
+
+def solution(n):
+    i = 1
+    while factorial(i) <= n:
+        i += 1
+    return i - 1
+
+####
+
 def factorial(i):
     result = 1
     for j in range(1, i+1):
