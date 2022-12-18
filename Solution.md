@@ -2153,7 +2153,7 @@ function solution(n) {
 }
 ```
 
-## k의 개수
+## k의 개수 - 12월 18일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120887
 -   python
@@ -2177,9 +2177,27 @@ function solution(i, j, k) {
 
     return a.split(k).length - 1;
 }
+
+function solution(i, j, k) {
+    return (
+        Array(j - i + 1)
+            .fill(i)
+            .map((v, i) => v + i)
+            .join("")
+            .split(k).length - 1
+    );
+}
+
+function solution(i, j, k) {
+    let str = Array(j - i + 1)
+        .fill(i)
+        .map((v, i) => v + i)
+        .join("");
+    return Array.from(str).filter((t) => +t === k).length;
+}
 ```
 
-## 가까운 수
+## 가까운 수 - 12월 18일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120890
 -   python
@@ -2214,6 +2232,15 @@ function solution(array, n) {
         }
     }
     return array[ind];
+}
+
+function solution(array, n) {
+    return array[
+        array
+            .sort((a, b) => a - b)
+            .map((v) => Math.abs(v - n))
+            .indexOf(Math.min(...array.map((v) => Math.abs(v - n))))
+    ];
 }
 ```
 
