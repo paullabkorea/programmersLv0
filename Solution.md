@@ -2244,7 +2244,7 @@ function solution(array, n) {
 }
 ```
 
-## 한 번만 등장한 문자
+## 한 번만 등장한 문자 - 12월 19일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120896
 -   python
@@ -2299,12 +2299,30 @@ function solution(bin1, bin2) {
 }
 ```
 
-## 잘라서 배열로 저장하기
+## 잘라서 배열로 저장하기 - 12월 19일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120913
 -   python
 
 ```py
+import re
+
+n = 3
+p = re.compile(f'.{{1,{n}}}') #1 ~ n회 반복
+print(p)
+m = p.findall("python hello world hello")
+print(m)
+
+#########
+
+import re
+
+def solution(my_str, n):
+    p = re.compile(f'.{{1,{n}}}') #1 ~ n회 반복
+    return p.findall(my_str)
+
+#########
+
 import math
 
 def solution(my_str, n):
@@ -2332,7 +2350,7 @@ function solution(my_str, n) {
 }
 ```
 
-## 진료순서 정하기
+## 진료순서 정하기 - 12월 26일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120835
 -   python
@@ -2497,12 +2515,15 @@ function solution(balls, share) {
 }
 ```
 
-## 영어가 싫어요
+## 영어가 싫어요 - 12월 27일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120894
 -   python
 
 ```py
+def solution(numbers):
+    return int(numbers.replace('one', '1').replace('two', '2').replace('three', '3').replace('four', '4').replace('five', '5').replace('six', '6').replace('seven', '7').replace('eight', '8').replace('nine', '9').replace('zero', '0'))
+
 import re
 
 def solution(numbers):
@@ -2532,6 +2553,12 @@ def solution(numbers):
 -   js
 
 ```js
+
+function solution(numbers) {
+    return +numbers.replaceAll('one', '1').replaceAll('two', '2').replaceAll('three', '3').replaceAll('four', '4').replaceAll('five', '5').replaceAll('six', '6').replaceAll('seven', '7').replaceAll('eight', '8').replaceAll('nine', '9').replaceAll('zero', '0');
+}
+
+
 function solution(numbers) {
     const obj = {
         zero: 0,
@@ -2557,7 +2584,7 @@ function solution(numbers) {
 }
 ```
 
-## 외계어 사전
+## 외계어 사전 - 12월 27일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120869
 -   python
@@ -2592,7 +2619,8 @@ function solution(spell, dic) {
 
 // Array('hello') == Array('hello')
 // new Set('hello') == new Set('hello')
-// 2개 모두 false
+// 2개 모두 false(==, === 모두!)
+// [1, 2, 3] == [1, 2, 3] // false!
 ```
 
 ## 문자열 계산하기
@@ -2670,12 +2698,17 @@ function solution(keyinput, board) {
 }
 ```
 
-## 문자열 밀기
+## 문자열 밀기 - 12월 28일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120921
 -   python
 
 ```py
+
+# 이러한 문제 유형이 많이 나옴
+# 1차원 배열을 뒤로 미는 것
+# 2차원 좌표평면에서 이동하는 것
+
 import collections
 
 def solution(A, B):
@@ -2703,6 +2736,9 @@ def solution(A, B):
         answer = len(A) - answer
 
     return answer
+
+def solution(A, B):
+    return (B*2).find(A)
 ```
 
 -   js
@@ -2785,7 +2821,7 @@ function solution(sides) {
 }
 ```
 
-## 컨트롤 제트
+## 컨트롤 제트 - 12월 28일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120853
 -   python
@@ -2812,9 +2848,9 @@ function solution(s) {
 }
 ```
 
-## 등수 매기기
+## 등수 매기기 - 1월 6일
 
--   링크 :
+-   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120882
 -   python
 
 ```py
@@ -3007,7 +3043,7 @@ function solution(chicken) {
 }
 ```
 
-## 저주의 숫자 3
+## 저주의 숫자 3 - 1월 10일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120871
 -   python
@@ -3138,72 +3174,64 @@ function solution(array) {
 }
 ```
 
-## 다항식 더하기
+## 다항식 더하기 - 1월 11일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120863
 -   python
 
 ```py
-def solution(polynomial):
-    # 양수만 고려했어도 됨.
-    x = polynomial.split(' ')
-    x항 = 0
-    일반항 = 0
-    for i, value in enumerate(x):
-        if 'x' in value:
-            if len(value) == 1:
-                if x[i-1] == '+' or i == 0:
-                    x항 += 1
+def solution(입력값):
+    항 = [0, 0] # x항, 일반항
+    for i in 입력값.replace(' ', '').split('+'):
+        if 'x' in i:
+            if len(i) == 1:
+                항[0] += 1
             else:
-                if x[i-1] == '+' or i == 0:
-                    x항 += int(value[:-1])
-        elif value != '+':
-            일반항 += int(value)
+                항[0] += int(i[:-1])
+        else:
+            항[1] += int(i)
 
-    if 일반항 == 0 and x항 == 0:
-        return f'0'
-    elif 일반항 == 0 and x항 != 0:
-        if x항 == 1:
-            return 'x'
-        return f'{x항}x'
-    elif 일반항 != 0 and x항 == 0:
-        return f'{일반항}'
-    elif 일반항 < 0 and x항 > 0:
-        if x항 == 1:
-            return f'x - {일반항}'
-        return f'{x항}x - {일반항}'
-    elif 일반항 > 0 and x항 > 0:
-        if x항 == 1:
-            return f'x + {일반항}'
-        return f'{x항}x + {일반항}'
-    elif 일반항 > 0 and x항 < 0:
-        if x항 == -1:
-            return f'-x + {일반항}'
-        return f'-{x항}x + {일반항}'
-    elif 일반항 < 0 and x항 < 0:
-        if x항 == -1:
-            return f'-x + {일반항}'
-        return f'-{x항}x + {일반항}'
+    # if 항[0] == 1 and 항[1] == 0:
+    #     return f"x"
+    # if 항[0] == 1 and 항[1] != 0:
+    #     return f"x + {항[1]}"
+    # 간소화
+    if 항[0] == 1:
+        return f"x" if 항[1] == 0 else f"x + {항[1]}"
+
+    
+
+    if 항[0] == 0 and 항[1] == 0:
+        return f""
+    if 항[0] == 0 and 항[1] != 0:
+        return f"{항[1]}"
+    if 항[0] != 0 and 항[1] == 0:
+        return f"{항[0]}x"
+    if 항[0] != 0 and 항[1] != 0:
+        return f"{항[0]}x + {항[1]}"
+
+solution("3x + 7 + x")
 ```
 
 -   js
 
 ```js
 function solution(polynomial) {
-    const arr = polynomial.split(" + ");
-    const xNum = arr
-        .filter((n) => n.includes("x"))
-        .map((n) => n.replace("x", "") || "1")
-        .reduce((acc, cur) => acc + parseInt(cur, 10), 0);
-    const num = arr
-        .filter((n) => !isNaN(n))
-        .reduce((acc, cur) => acc + parseInt(cur, 10), 0);
-
-    let answer = [];
-    if (xNum) answer.push(`${xNum === 1 ? "" : xNum}x`);
-    if (num) answer.push(num);
-
-    return answer.join(" + ");
+    const arr = polynomial.split(' + ')
+    const x항 = arr.filter(v => v.includes('x')).map(v => parseInt(v.replace('x', '')) || 1).reduce((a, c) => a + c, 0)
+    const 일반항 = arr.filter(v => !v.includes('x')).reduce((a, c) => a + parseInt(c), 0)
+    const answer = []
+    if (x항){
+        if (x항 === 1){
+            answer.push('x')
+        } else {
+            answer.push(`${x항}x`)
+        }
+    }
+    if (일반항){
+        answer.push(일반항)
+    }
+    return answer.join(' + ');
 }
 ```
 
