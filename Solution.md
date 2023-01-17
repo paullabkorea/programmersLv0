@@ -3365,7 +3365,7 @@ function solution(num, total) {
 }
 ```
 
-## 안전지대
+## 안전지대 - 1월 12일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120866
 -   python
@@ -3420,6 +3420,22 @@ solution([[0, 0, 0, 1, 0],
           [0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0]])
 
+danger.update('hello')
+danger
+
+danger.update((di, dj) for di in [-1,0,1] for dj in [-1, 0, 1])
+danger.update((di+x좌표, dj+y좌표) for di in [-1,0,1] for dj in [-1, 0, 1])
+
+def solution(board):
+    n = len(board)
+    danger_zone = set()
+    
+    for row, row_value in enumerate(board):
+        for col, row_col_value in enumerate(row_value):
+            print(row, col, row_value, row_col_value)
+            if not row_col_value:
+                continue
+            danger.update()
 
 def solution(board):
     n = len(board)
@@ -3471,7 +3487,7 @@ function solution(b) {
 }
 ```
 
-## 겹치는 선분의 길이
+## 겹치는 선분의 길이 - 1월 13일
 
 -   링크 : https://school.programmers.co.kr/learn/courses/30/lessons/120876
 -   python
@@ -3510,6 +3526,16 @@ solution([[0, 5], [3, 9], [1, 10]])
 solution([[0, 1], [2, 5], [3, 9]])
 
 # 정답
+
+def solution(lines):
+    line = [0 for i in range(200)]
+    for a, b in lines:
+        while a < b:
+            line[a+100] += 1
+            a += 1
+    return len(list(filter(lambda x: x>1, line)))
+
+
 def solution(lines):
     lines.sort(key=lambda x:x[1])
     하나, 둘, 셋 = lines
@@ -3573,6 +3599,18 @@ def solution(lines):
 -   js
 
 ```js
+
+function solution(lines) {
+    let line = new Array(200).fill(0)
+    lines.forEach(([min, max]) => {
+        for (; min < max; min++) {
+            line[min+100]++
+        }
+    })
+    return line.filter(v => v > 1).length;
+}
+
+
 function solution(lines) {
     let line = new Array(200).fill(0);
 
